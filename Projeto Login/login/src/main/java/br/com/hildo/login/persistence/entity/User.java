@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
+
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -24,6 +25,9 @@ public class User {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "rg", nullable = false)
+    private String rg;
 
     @Column(name = "email", nullable = false, unique = true)
     @Email(message = " O e-mail deve ser valido")

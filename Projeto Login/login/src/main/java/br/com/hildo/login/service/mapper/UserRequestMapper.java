@@ -15,7 +15,9 @@ public class UserRequestMapper implements Mapper<UserRequest, User> {
         }
 
         User user = new User();
+
         user.setName(input.getName());
+        user.setRg(input.getRg());
         user.setEmail(input.getEmail());
         user.setPassword(input.getPassword());
 

@@ -10,11 +10,12 @@ import br.com.hildo.login.service.mapper.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.springframework.util.Assert.notNull;
 
@@ -39,17 +40,19 @@ public class UserServiceImpl implements UserService {
         notNull(userRequest, " Request Invalida");
 
         User user = this.requestMapper.map(userRequest);
+
         User savedUser = userRepository.saveAndFlush(user);
 
         return this.responseMapper.map(savedUser);
     }
 
     @Override
-    public Page<UserResponse> getAll(Pageable pageable) {
-        LOGGER.info(" Buscando todos os  usuarios");
-        notNull(pageable, " Pagina Invalida");
-
-        return userRepository.findAll(pageable).map(user -> this.responseMapper.map(user));
+    public List<UserResponse> getAll() {
+        LOGGER.info("Buscando todos os usuários");
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(user -> this.responseMapper.map(user))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -63,6 +66,7 @@ public class UserServiceImpl implements UserService {
                 .map(user -> {
 
                     user.setName((userUpdate.getName()));
+                    user.setRg((userUpdate.getRg()));
                     user.setEmail((userUpdate.getEmail()));
 
                     return responseMapper.map(userRepository.saveAndFlush(user));
@@ -70,6 +74,7 @@ public class UserServiceImpl implements UserService {
 
                 });
     }
+
 
     @Override
     public Optional<UserResponse> get(Long id) {

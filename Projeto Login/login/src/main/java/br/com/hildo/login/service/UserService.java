@@ -2,16 +2,16 @@ package br.com.hildo.login.service;
 
 import br.com.hildo.login.model.request.UserRequest;
 import br.com.hildo.login.model.response.UserResponse;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
+
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
 
     UserResponse create(UserRequest userRequest);
 
-    Page<UserResponse> getAll(Pageable pageable);
+    List<UserResponse> getAll();
 
     Optional<UserResponse> update(Long id, UserRequest userRequest);
 

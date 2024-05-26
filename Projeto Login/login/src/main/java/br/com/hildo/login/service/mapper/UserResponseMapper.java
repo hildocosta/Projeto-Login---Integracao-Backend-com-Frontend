@@ -15,8 +15,10 @@ public class UserResponseMapper implements Mapper<User, UserResponse> {
         }
 
         UserResponse userResponse = new UserResponse();
+
         userResponse.setId(input.getId());
         userResponse.setName(input.getName());
+        userResponse.setRg(input.getRg());
         userResponse.setEmail(input.getEmail());
         userResponse.setPassword(input.getPassword());
 

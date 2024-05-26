@@ -4,16 +4,17 @@ import br.com.hildo.login.model.request.UserRequest;
 import br.com.hildo.login.model.response.UserResponse;
 import br.com.hildo.login.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
+
 
     @Autowired
     private UserService userService;
@@ -25,10 +26,11 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<UserResponse>> getAllUsers(Pageable pageable) {
-        Page<UserResponse> users = userService.getAll(pageable);
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<UserResponse> users = userService.getAll();
         return ResponseEntity.ok(users);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
