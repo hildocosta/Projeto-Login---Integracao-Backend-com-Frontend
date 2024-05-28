@@ -1,0 +1,16 @@
+package br.com.hildo.login.model.response;
+
+
+import lombok.*;
+
+@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProfileResponse {
+
+    private Long id;
+
+    private String description;
+}

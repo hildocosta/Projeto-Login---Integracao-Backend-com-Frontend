@@ -41,6 +41,7 @@ public class User {
     private String password;
 
     public <R> R map(Function<User, R> func) {
+
         return func.apply(this);
     }
 

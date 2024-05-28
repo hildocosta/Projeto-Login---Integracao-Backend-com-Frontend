@@ -12,7 +12,7 @@
 	<artifactId>login</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>login</name>
-	<description>Projeto Login Page</description>
+	<description> Crud Weapon Page</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
